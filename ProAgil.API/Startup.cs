@@ -38,6 +38,8 @@ namespace ProAgil.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProAgil.API", Version = "v1" });
             });
+            //Adicionando o Cors
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +53,8 @@ namespace ProAgil.API
             }
 
             //app.UseHttpsRedirection();
-
+            //Uso do Cors para ligar a conexao de segurança com o Angular
+            app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseRouting();
 
             app.UseAuthorization();

@@ -9,5 +9,6 @@ namespace ProAgil.API.Model
         public string Tema { get; set; }
         public int QtPessoas { get; set; }
         public string Lote { get; set; }
+        public string ImagemUrl { get; set;}
     }
 }

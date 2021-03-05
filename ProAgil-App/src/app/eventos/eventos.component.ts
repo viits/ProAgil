@@ -8,7 +8,23 @@ import {HttpClient} from '@angular/common/http';
 })
 export class EventosComponent implements OnInit {
 
-  eventos: any ;
+  _filtroLista = '';
+
+  get filtroLista(): string{
+    return this._filtroLista;
+  }
+  set filtroLista(value: string){
+    this._filtroLista = value;
+    this.eventosFiltrados = this._filtroLista ? this.filtrarEvento(this.filtroLista) : this.eventos;
+  }
+
+  eventosFiltrados: any = [];
+
+  eventos: any = [];
+  imagemLargura = 50;
+  imagemMargem = 3;
+  mostrarImagem = false;
+  
 
   constructor(private http: HttpClient) { }
 
@@ -16,13 +32,26 @@ export class EventosComponent implements OnInit {
     this.getEventos();
   }
 
+    alternarImagem(){
+      this.mostrarImagem = !this.mostrarImagem;
+    }
+
   getEventos(){
     this.http.get('http://localhost:5000/api/weatherforecast').subscribe(response => {
       console.log(response);
-      //this.eventos = response;
+      this.eventos = response;
     }, error =>{
-      console.log("Algo deu errado");
+        console.log(error);
     });
+  }
+
+  filtrarEvento(value: string): any {
+    value = value.toLocaleLowerCase();
+    return this.eventos.filter(
+      (      e: { tema: string; }) => {
+        return e.tema.toLocaleLowerCase().indexOf(value) !== -1;
+      }
+    );
   }
 
 }

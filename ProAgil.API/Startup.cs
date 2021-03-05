@@ -55,6 +55,7 @@ namespace ProAgil.API
             //app.UseHttpsRedirection();
             //Uso do Cors para ligar a conexao de segurança com o Angular
             app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthorization();

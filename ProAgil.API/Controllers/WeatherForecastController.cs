@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using ProAgil.API.Data;
-using ProAgil.API.Model;
+
+using ProAgil.Domain;
+using ProAgil.Repository;
 
 namespace ProAgil.API.Controllers
 {
@@ -17,9 +17,9 @@ namespace ProAgil.API.Controllers
 
     public class WeatherForecastController : ControllerBase
     {
-        public readonly DataContext contexto;
+        public readonly ProAgilContext contexto;
 
-        public WeatherForecastController(DataContext contexto)
+        public WeatherForecastController(ProAgilContext contexto)
         {
             this.contexto = contexto;
         }
@@ -29,7 +29,7 @@ namespace ProAgil.API.Controllers
         public async Task<IActionResult> Get()
         {
             try{
-                var results = await this.contexto.Evento.ToListAsync();
+                var results = await this.contexto.Eventos.ToListAsync();
                 return Ok(results);
             }catch(System.Exception){
                 return this.StatusCode(StatusCodes.Status500InternalServerError);
@@ -41,7 +41,7 @@ namespace ProAgil.API.Controllers
         public async Task<ActionResult<Evento>> Get(int id)
         {   
             try{
-                var results = await this.contexto.Evento.FirstOrDefaultAsync(x => x.EventoId == id);;
+                var results = await this.contexto.Eventos.FirstOrDefaultAsync(x => x.Id == id);;
                 return Ok(results);
             }catch(System.Exception){
                 return this.StatusCode(StatusCodes.Status500InternalServerError);

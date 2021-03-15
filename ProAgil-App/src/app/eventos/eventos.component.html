@@ -73,3 +73,84 @@
     this is a modal
   </div>
 </ng-template>
+
+<form [formGroup]="registerForm">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Tema</label>
+      <input  type="text"  class="form-control" formControlName="tema" placeholder="">
+      <!-- <div *ngIf="registerForm.get('tema').hasError('required') 
+          && registerForm.get('tema').touched" class="invalid-feedback">
+        The Theme is required
+      </div>
+      <div *ngIf="registerForm.get('tema').hasError('minLength')
+          && registerForm.get('tema').touched" class="invalid-feedback">
+        the theme must be have Min 4 char
+      </div>
+      <div *ngIf="registerForm.get('tema').hasError('maxLength')
+          && registerForm.get('tema').touched" class="invalid-feedback">
+        The Theme must be has 50 chars
+      </div> -->
+    </div>
+  </div>  
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label>Local</label>
+      <input  type="text" class="form-control "  formControlName="local" placeholder="" >
+      <!-- <div class="invalid-feedback">
+        The address is required
+      </div> -->
+    </div>
+    <div class="form-group col-md-4">
+      <label>Data e Hora</label>
+      <input  type="text" class="form-control " formControlName="dataEvento" bsDatepicker placeholder="">
+      <!-- <div class="invalid-feedback">
+        The date is required
+      </div> -->
+    </div>
+  </div>  
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label>Qtd Pessoas</label>
+      <input  type="text" class="form-control " formControlName="qtPessoas" placeholder="">
+      <!-- <div class="invalid-feedback">
+        The Quantity people is required
+      </div> -->
+    </div>
+    <div class="form-group col-md-9">
+      <label>Imagem</label>
+      <input  type="text" class="form-control " formControlName="imagemUrl" placeholder="">
+      <!-- <div class="invalid-feedback">
+        The Image is required
+      </div> -->
+    </div>
+  </div>  
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label>Telefone</label>
+      <input  type="text" class="form-control " formControlName="telefone" placeholder="">
+      <!-- <div class="invalid-feedback">
+        The phone is required
+      </div> -->
+    </div>
+    <div class="form-group col-md-4">
+      <label>Email</label>
+      <input  type="text" class="form-control " formControlName="email" placeholder="">
+      <!-- <div class="invalid-feedback">
+        The Email is required
+      </div> -->
+    </div>
+  </div> 
+</form>
+<br>
+<button class="btn btn-secondary" (click)="openModal(template)">
+  Fechar
+</button>
+<button class="btn btn-primary"  (click)="salvarAlteracao()">
+  Salvar Alterações
+</button>
+<br>
+<br>
+
+<p>Form Value: {{registerForm.value | json}}</p>
+<p> Form Status: {{registerForm.status | json}}</p>

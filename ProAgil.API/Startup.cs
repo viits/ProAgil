@@ -40,6 +40,7 @@ namespace ProAgil.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProAgil.API", Version = "v1" });
             });
+            services.AddAutoMapper(typeof(Startup).Assembly);
             //Adicionando o Cors
             services.AddCors();
         }
